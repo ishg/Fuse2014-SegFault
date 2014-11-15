@@ -1,6 +1,6 @@
 {
 	"monitor":1,
-	"summary-point": 0,
+	"summaryPoint": 120,
 	"dates":[
 		"Nov 9","Nov 10", "Nov 11", "Nov 12", "Nov 13", "Nov 14", "Nov 15"
 	],
