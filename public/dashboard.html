@@ -34,43 +34,96 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-10" style="margin-top: 25px; margin-bottom:25px;">
 					<div id="board">
-						<div class="col-md-6 moduleContainer" id="leftColumn">
-							<div class="module" id="walkingModule">
-								<h1>1</h1>
-							</div>
-							<div class="module" id="runningModule">
-								<h1>2</h1>
-							</div>
-							<div class="module" id="weightModule">
-								<h1>3</h1>
-							</div>
+				<div class="col-md-6 moduleContainer" id="leftColumn">
+					<div class="module" id="exerciseModule" style="background-color: #04B45F">
+						<div style="position: relative; width: 0; height: 0">
+						    <div style="position: absolute; left: 350px; top: 50px">
+						        <i class="fa fa-tree" style="color: #01DF74; font-size: 215pt"></i>
+						    </div>
 						</div>
-						<div class="col-md-6 moduleContainer" id="rightColumn">
-							<div class="module" id="glucoseModule">
-								<h1>4</h1>
-							</div>
-							<div class="module" id="heartRateModule" style="background-color: #d9534f">
-								<ul class="nav nav-tabs">
-								  <li role="presentation" class="active"><a onClick="showContent(this)" style="color: #6E6E6E">Summary</a></li>
-								  <li role="presentation"><a onClick="showContent(this)" style="color: #FFF">Graph</a></li>
-								</ul>
-								<h1 style="color: #FFF; margin-left: 15px">Heart Rate</h1>
-								<div class="Summary">
-									<div class="col-md-8 col-md-offset-2">
-										<canvas class="col-md-12" id="heartRateCanvas" data-value="80"></canvas>
-									</div>
-								</div>
-								<div class="Graph" style="display: none">
-									<div class="col-md-10 col-md-offset-1">
-										<h3>this is a graph</h3>
-									</div>
+						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
+						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".graph" style="color: #FFF">Graph</a></li>
+						</ul>
+						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Exercise</h1>
+						<div style="position: relative; top -50px">			
+							<div class="summary displayableContent">
+								<div class="col-md-8 col-md-offset-2">
+									<canvas class="col-md-12" id="exerciseCanvas" data-value="3333"></canvas>
 								</div>
 							</div>
-							<div class="module" id="sleepModule">
-								<h1>6</h1>
+							<div class="graph displayableContent" style="display: none">
+								<div class="col-md-10 col-md-offset-1">
+									<canvas class="col-md-12" height="225" width="600" id="exerciseChart"></canvas>
+								</div>
 							</div>
 						</div>
 					</div>
+					<div class="module" id="glucoseModule" style="background-color: #DBA901">
+						<div style="position: relative; width: 0; height: 0">
+						    <div style="position: absolute; left: 370px; top: 40px">
+						        <i class="fa fa-tint" style="color: #F5DA81; font-size: 260pt"></i>
+						    </div>
+						</div>
+						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
+						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".graph" style="color: #FFF">Graph</a></li>
+						</ul>
+						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Blood Glucose</h1>
+						<div style="position: relative; top -50px">			
+							<div class="summary displayableContent">
+								<div class="col-md-8 col-md-offset-2">
+									<canvas class="col-md-12" id="glucoseCanvas" data-value-top="120" data-value-bot="80"></canvas>
+								</div>
+							</div>
+							<div class="graph displayableContent" style="display: none">
+								<div class="col-md-10 col-md-offset-1">
+									<canvas class="col-md-12" height="225" width="600" id="glucoseChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 moduleContainer" id="rightColumn">
+					<div class="module" id="notificationModule" style="background-color: #0080FF">
+						<div style="position: relative; width: 0; height: 0">
+						    <div style="position: absolute; left: 300px; top: 23px">
+						        <i class="fa fa-envelope" style="color: #58ACFA; font-size: 250pt"></i>
+						    </div>
+						</div>
+						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -5px; right: 25px">Notifications</h1>
+						<div style="margin-left: 50px">
+							<h3 style="color: #FFF">Notification 1</h3>
+							<h3 style="color: #FFF">Notification 2</h3>
+							<h3 style="color: #FFF">Notification 3</h3>
+						</div>
+					</div>
+					<div class="module" id="bloodPressure" style="background-color: #d9534f">
+						<div style="position: relative; width: 0; height: 0">
+						    <div style="position: absolute; left: 300px; top: 23px">
+						        <i class="fa fa-heart" style="color: #F78181; font-size: 260pt"></i>
+						    </div>
+						</div>
+						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
+						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".graph" style="color: #FFF">Graph</a></li>
+						</ul>
+						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Blood Pressure</h1>
+						<div style="position: relative; top -50px">			
+							<div class="summary displayableContent">
+								<div class="col-md-8 col-md-offset-2">
+									<canvas class="col-md-12" id="bloodCanvas" data-value="80"></canvas>
+								</div>
+							</div>
+							<div class="graph displayableContent" style="display: none">
+								<div class="col-md-10 col-md-offset-1">
+									<canvas class="col-md-12" height="225" width="600" id="bloodChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
