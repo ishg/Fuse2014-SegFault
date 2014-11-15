@@ -1,14 +1,10 @@
-{
-	"glucose":{
-		"description": "String of text",
-		"level": 1
-	},
-	"bp":{
-		"description": " String of text ",
-		"level": 2
-	},
-	"exercise":{
-		"description": " String of text ",
-		"level": 3
-	}
-}
+[
+  {
+    "description": "Your blood glucose level is great!",
+    "level": 1
+  },
+  {
+    "description": "Great job on fitness today!",
+    "level": 1
+  }
+]

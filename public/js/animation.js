@@ -39,15 +39,21 @@ function doNotifications() {
 			if(notifications[i].level == 1) {
 				$(element).addClass('alert alert-success');
 				$(element).css('background-color','rgba(4,180,95,0.8)');
-				$(element).css('color','#3c763d');
+				//$(element).css('color','#3c763d');
+				$(element).css('color','#FFF');
+				$(element).css('font-size','20pt');
 			}
 			else if(notifications[i].level == 2) {
 				$(element).addClass('alert alert-warning');
 				$(element).css('background-color','rgba(245,209,93,0.8)');
+				$(element).css('color','#FFF');
+				$(element).css('font-size','20pt');
 			}
 			else if(notifications[i].level == 3) {
 				$(element).addClass('alert alert-danger');
 				$(element).css('background-color','rgba(247,129,129,0.8)');
+				$(element).css('color','#FFF');
+				$(element).css('font-size','20pt');
 			}
 
 			notificationContainer.append(element);
