@@ -3,6 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var https = require('https');
 var fs = require("fs");
 var path = require('path');
 var app = express();
@@ -26,6 +27,29 @@ app.get('/dash', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/dashboard.html'));	
 });
 
+
+var getGlucose = function(){
+	request('https://api.humanapi.co/v1/human/blood_pressure/readings?access_token=demo', function (error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	    var json = JSON.parse(body);
+	    var data = {};
+	    data.monitor = 1;
+	    data.dates = ["Nov 9","Nov 10", "Nov 11", "Nov 12", "Nov 13", "Nov 14", "Nov 15"];
+	    data.values = [];
+	    var bp;
+	    var i=0;
+	    while(i<7){
+	    	data.values[i] = json[i].systolic + "/" + json[i].diastolic;
+	    	i+=1;
+	    }
+	    data.summaryPoint = data.values[6];
+	    var file = __dirname + '/public/data/u'+user+'/bp.json';
+	    fs.writeFile(file, JSON.stringify(data,undefined,2), function (err) {
+    		if (err) throw err;
+    	});
+	  }
+	})
+}
 
 //Api
 
@@ -58,8 +82,8 @@ app.get('/api/exercise', function(req,res){
 	});
 });
 app.get('/api/glucose',function(req,res){
+	getGlucose();
 	var folder;
-	console.log(req.body);
 	if (user ==1){
 		folder = "u1";
 	}else{
