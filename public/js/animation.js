@@ -20,6 +20,44 @@ $(function() {
 	doBloodPressure();
 	doExercise();
 	doGlucose();
+	doNotifications();
+
+function doNotifications() {
+	
+	$.get('/api/notifications',function(res){
+		//console.log(res);
+	})
+	.success(function(res) {
+
+		var notificationContainer = $('#notificationContainer');
+		var notifications = res;
+		console.log(res);
+		for(i = 0; i < notifications.length; i++) {
+			var element = document.createElement('p');
+			$(element).text(notifications[i].description);
+
+			if(notifications[i].level == 1) {
+				$(element).addClass('alert alert-success');
+				$(element).css('background-color','rgba(4,180,95,0.8)');
+				$(element).css('color','#3c763d');
+			}
+			else if(notifications[i].level == 2) {
+				$(element).addClass('alert alert-warning');
+				$(element).css('background-color','rgba(245,209,93,0.8)');
+			}
+			else if(notifications[i].level == 3) {
+				$(element).addClass('alert alert-danger');
+				$(element).css('background-color','rgba(247,129,129,0.8)');
+			}
+
+			notificationContainer.append(element);
+		}
+
+	})
+	.error(function(data){
+		//console.log(err);
+	});
+}
 
 function doBloodPressure() {
 

@@ -219,7 +219,7 @@ app.get('/api/notifications',function(req,res){
 	}else{
 		folder = "u2";
 	}
-	var file = __dirname + '/public/data/'+folder+'/notifications.json';
+	var file = __dirname + '/public/data/'+folder+'/notification.json';
 	var json;
 	fs.readFile(file, 'utf8', function (err, data) {
 		if (err) {
