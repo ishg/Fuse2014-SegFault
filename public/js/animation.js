@@ -22,6 +22,17 @@ $(function() {
 	doGlucose();
 
 function doGlucose() {
+	console.log("wtf");
+
+	$.get('/api/glucose',function(data){
+		console.log(data);
+	})
+	.success(function(data) {
+		console.log(data);
+	})
+	.error(function(data){
+		console.log(err);
+	});
 	//chart stuff 
 	var ctx2 = document.getElementById("glucoseChart").getContext("2d");
 
