@@ -64,12 +64,13 @@
 					<div class="module" id="glucoseModule" style="background-color: #DBA901">
 						<div style="position: relative; width: 0; height: 0">
 						    <div style="position: absolute; left: 370px; top: 40px">
-						        <i class="fa fa-tint" style="color: #F5DA81; font-size: 260pt"></i>
+						        <i class="fa fa-tint" style="color: #F5D15D; font-size: 260pt"></i>
 						    </div>
 						</div>
 						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
 						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
-						  <li role="presentation"><a onClick="showContent(this)" data-show=".graph" style="color: #FFF">Graph</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".preGraph" style="color: #FFF">Pre-Meal Graph</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".postGraph" style="color: #FFF">Post-Meal Graph</a></li>
 						</ul>
 						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Blood Glucose</h1>
 						<div style="position: relative; top -50px">			
@@ -78,9 +79,16 @@
 									<canvas class="col-md-12" id="glucoseCanvas" data-value="80"></canvas>
 								</div>
 							</div>
-							<div class="graph displayableContent" style="display: none">
+							<div class="preGraph displayableContent" style="display: none">
 								<div class="col-md-10 col-md-offset-1">
-									<canvas class="col-md-12" height="225" width="600" id="glucoseChart"></canvas>
+									<canvas class="col-md-12" height="225" width="600" id="preGlucoseChart"></canvas>
+									<div id="preLegend"></div>
+								</div>
+							</div>
+							<div class="postGraph displayableContent" style="display: none">
+								<div class="col-md-10 col-md-offset-1">
+									<canvas class="col-md-12" height="225" width="600" id="postGlucoseChart"></canvas>
+									<div id="postLegend"></div>
 								</div>
 							</div>
 						</div>
@@ -100,7 +108,7 @@
 							<h3 style="color: #FFF">Notification 3</h3>
 						</div>
 					</div>
-					<div class="module" id="bloodPressure" style="background-color: #d9534f">
+					<div class="module" id="bloodPressureModule" style="background-color: #d9534f">
 						<div style="position: relative; width: 0; height: 0">
 						    <div style="position: absolute; left: 300px; top: 23px">
 						        <i class="fa fa-heart" style="color: #F78181; font-size: 260pt"></i>
@@ -108,7 +116,7 @@
 						</div>
 						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
 						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
-						  <li role="presentation"><a onClick="showContent(this)" data-show=".graph" style="color: #FFF">Graph</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".history" style="color: #FFF">History</a></li>
 						</ul>
 						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Blood Pressure</h1>
 						<div style="position: relative; top -50px">			
@@ -117,9 +125,9 @@
 									<canvas class="col-md-12" id="bloodCanvas" data-value-top="120" data-value-bot="80"></canvas>
 								</div>
 							</div>
-							<div class="graph displayableContent" style="display: none">
-								<div class="col-md-10 col-md-offset-1">
-									<canvas class="col-md-12" height="225" width="600" id="bloodChart"></canvas>
+							<div class="history displayableContent" style="display: none">
+								<div class="col-md-10 col-md-offset-1" id="bloodContainer">
+									
 								</div>
 							</div>
 						</div>
