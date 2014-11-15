@@ -1,0 +1,26 @@
+.module {
+	height: 350px;
+	border: 1px solid #848484;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #D8D8D8;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#leftcolumn {
+	border-left: solid 1px #848484;
+}
+
+#rightColumn {
+	border-right: solid 1px #848484;
+}
+
+#header {
+	margin-bottom: 25px;
+}
+
+.module.over {
+  margin-top: 50px;
+}

@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<script type='text/javascript' src="/js/jquery-2.1.1.min.js"></script>
+  		<script type='text/javascript' src="/js/bootstrap.min.js"></script>
+  		<script type='text/javascript' src="/js/dragDrop.js"></script>
+  		<script type='text/javascript' src="/js/animation.js"></script>
+  		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  		<link href="/css/styles.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div id="siteContainer" class="col-md-10 col-md-offset-1" style="margin-top: 25px">
+			<div id="header">
+				<script src='https://connect.humanapi.co/connect.js'></script>
+
+				<img id='connect-health-data-btn' src='https://connect.humanapi.co/assets/button/blue.png'/>
+
+				<script>
+				var connectBtn = document.getElementById('connect-health-data-btn');
+				connectBtn.addEventListener('click', function(e) {
+				  var opts = {
+				    // grab this from the app settings page
+				    clientId: 'b62f742e4a6f01705fc0f0bf492a8ab0b172458c',
+				    // can be email or any other internal id of the user in your system
+				    clientUserId: '6b59c2a372e480744eebb09ec260ab4a8de61d59',
+				    finish: function(err, sessionTokenObject) {
+				      // When user finishes health data connection to your app
+				      // `finish` function will be called.
+				      // `sessionTokenObject` object will have several fields in it.
+				      // You need to pass this `sessionTokenObject` object to your server
+				      // add `CLIENT_SECRET` to it and send `POST` request to the `https://user.humanapi.co/v1/connect/tokens` endpoint.
+				      // In return you will get `accessToken` for that user that can be used to query Human API.
+				    },
+				    close: function() {
+				      // do something here when user just closed popup
+				      // `close` callback function is optional
+				    }
+				  }
+				  HumanConnect.open(opts);
+				});
+				</script>
+			</div>
+			<div id="board">
+				<div class="col-md-6 moduleContainer" id="leftColumn">
+					<div class="module" id="walkingModule">
+						<h1>1</h1>
+					</div>
+					<div class="module" id="runningModule">
+						<h1>2</h1>
+					</div>
+					<div class="module" id="weightModule">
+						<h1>3</h1>
+					</div>
+				</div>
+				<div class="col-md-6 moduleContainer" id="rightColumn">
+					<div class="module" id="glucoseModule">
+						<h1>4</h1>
+					</div>
+					<div class="module" id="heartRateModule" style="background-color: #d9534f">
+						<ul class="nav nav-tabs">
+						  <li role="presentation" class="active"><a onClick="showContent(this)" style="color: #6E6E6E">Summary</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" style="color: #FFF">Graph</a></li>
+						</ul>
+						<h1 style="color: #FFF; margin-left: 15px">Heart Rate</h1>
+						<div class="Summary">
+							<div class="col-md-8 col-md-offset-2">
+								<canvas class="col-md-12" id="heartRateCanvas" data-value="80"></canvas>
+							</div>
+						</div>
+						<div class="Graph" style="display: none">
+							<div class="col-md-10 col-md-offset-1">
+								<h3>this is a graph</h3>
+							</div>
+						</div>
+					</div>
+					<div class="module" id="sleepModule">
+						<h1>6</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
