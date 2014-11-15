@@ -7,6 +7,7 @@ var fs = require("fs");
 var path = require('path');
 var app = express();
 
+var user = 1;
 
 app.set('port', (process.env.PORT || 5000))
 app.use('/public',express.static(__dirname+'/public'));
@@ -22,13 +23,84 @@ app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 app.get('/dash', function(req, res) {
-	res.sendFile(path.join(__dirname, '/public/dashboard.html'));
+	res.sendFile(path.join(__dirname, '/public/dashboard.html'));	
 });
 
 
 //Api
-app.get('/api/questions',function(req,res){
-	var file = __dirname + '/public/data/data_43210.json';
+
+app.post('/api/setuser', function(req,res){
+	user= req.body.email;
+	if (user == "ishmeet@gmail.com"){
+		user = 1;
+	}else{
+		user = 2;
+	}
+	res.send('Dafuq');
+});
+
+app.get('/api/exercise', function(req,res){
+	var folder;
+	if (user ==1){
+		folder = "u1";
+	}else{
+		folder = "u2";
+	}
+	var file = __dirname + '/public/data/'+folder+'exercise.json';
+	var json;
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+		json = JSON.parse(data);
+		res.send(json);
+	});
+});
+app.get('/api/glucose',function(req,res){
+	var folder;
+	if (user ==1){
+		folder = "u1";
+	}else{
+		folder = "u2";
+	}
+	var file = __dirname + '/public/data/'+folder+'glucose.json';
+	var json;
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+		json = JSON.parse(data);
+		res.send(json);
+	});
+});
+app.get('/api/bp',function(req,res){
+	var folder;
+	if (user ==1){
+		folder = "u1";
+	}else{
+		folder = "u2";
+	}
+	var file = __dirname + '/public/data/'+folder+'bp.json';
+	var json;
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+		json = JSON.parse(data);
+		res.send(json);
+	});
+});
+app.get('/api/notifications',function(req,res){
+	var folder;
+	if (user ==1){
+		folder = "u1";
+	}else{
+		folder = "u2";
+	}
+	var file = __dirname + '/public/data/'+folder+'notifications.json';
 	var json;
 	fs.readFile(file, 'utf8', function (err, data) {
 		if (err) {

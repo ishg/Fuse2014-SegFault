@@ -1,14 +1,28 @@
 var dash = angular.module('dash',['ngRoute']);
-dash.controller('UserCtrl',function($scop,$http){
+
+dash.controller('UserCtrl',function($scope,$http){
+	$scope.formData = {};
+	$scope.sendUser = function(){
+		console.log($scope.formData);
+		var user = $scope.formData.email;
+		$http.post('/api/setuser',$scope.formData)
+			.success(function(data){
+				console.log('success');
+				window.location.replace('/dash');
+			})
+			.error(function(data){
+				console.log("ERROR: "+ data);
+			});
+	}
+	
+});
+
+dash.controller('DashCtrl',function($scope,$http){
 
 
 });
 
-dash.controller('MainCtrl',function($scope,$http){
-
-
-});
-
+/*
 dash.controller('GymCtrl',function($scope,$http){
 	$scope.formData = {};
 	var get_url = '/api/gym'+ gym;
@@ -63,4 +77,4 @@ dash.controller('QuesCtrl',function($scope,$http){
 			});
 	}
 });
-
+*/
