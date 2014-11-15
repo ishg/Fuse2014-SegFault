@@ -4,22 +4,22 @@
 	"dates":[
 		"Nov 9","Nov 10", "Nov 11", "Nov 12", "Nov 13", "Nov 14", "Nov 15"
 	],
-	"breakfast-pre":[
+	"breakfastPre":[
 		80,82,95,115,79,97,84
 	],
-	"lunch-pre":[
+	"lunchPre":[
 		79,97,82,95,127,110,86
 	],
-	"dinner-pre":[
+	"dinnerPre":[
 		95,82,79,86,90,100
 	],
-	"breakfast-post":[
+	"breakfastPost":[
 		126,140,135,154,169,137,124
 	],
-	"lunch-post":[
+	"lunchPost":[
 		156,134,165,151,140,172,120
 	],
-	"dinner-post":[
+	"dinnerPost":[
 		124,169,143,139,127,153
 	]
 }
