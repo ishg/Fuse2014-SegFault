@@ -19,7 +19,7 @@ $(function() {
 var c = $('#heartRateCanvas');
 var ctx = c[0].getContext("2d");
 var value = c.data('value');
-
+console.log(c.width()/2);
 var i = 0;
 var drawLoop = setInterval(function(){
 	draw(c,i);
@@ -32,8 +32,9 @@ var drawLoop = setInterval(function(){
 function draw(canvas, value) {
 	ctx.clearRect(0,0,canvas.width(),canvas.height());
 	ctx.fillStyle = "#FFF";
-	ctx.font = "70px Helvetica Neue";
-	ctx.fillText(value + " bpm",50,90);
+	ctx.font = "50pt Helvetica Neue";
+	ctx.textAlign="center"; 
+	ctx.fillText(value + " bpm",c.width()/2,c.height()/2);
 }
 
 
