@@ -1,16 +1,18 @@
 /* Node Server */
 
 var express = require('express');
+var bodyParser = require('body-parser');
+var request = require('request');
+var fs = require("fs");
 var path = require('path');
 var app = express();
-var fs = require("fs");
-var bodyParser = require('body-parser');
+
 
 app.set('port', (process.env.PORT || 5000))
 app.use('/public',express.static(__dirname+'/public'));
 app.use('/css',express.static(__dirname+'/public/css'));
 app.use('/js',express.static(__dirname+'/public/js'));
-app.use('/images',express.static(__dirname+'/public/images'));
+app.use('/img',express.static(__dirname+'/public/img'));
 app.use('/fonts',express.static(__dirname+'/public/fonts'));
 
 app.use(bodyParser.json());
@@ -35,12 +37,6 @@ app.get('/api/questions',function(req,res){
 	});
 });
 
-
-
-var date = new Date();
-dd = date.getDate();
-mm = date.getMonth() + 1;
-yy = date.getFullYear();
 
 app.post('/api/ask',function(req,res){
 	var file = __dirname + '/public/data/data_43210.json';
@@ -69,6 +65,7 @@ app.post('/api/ask',function(req,res){
 
 	res.send("OK");
 });
+
 
 app.post('/api/answer',function(req,res){
 	var file = __dirname + '/public/data/data_43210.json';
