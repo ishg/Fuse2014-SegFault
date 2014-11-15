@@ -1,0 +1,10 @@
+{
+	"monitor":1,
+	"summary-point": 3332,
+	"dates":[
+		"Nov 9","Nov 10", "Nov 11", "Nov 12", "Nov 13", "Nov 14", "Nov 15"
+	],
+	"values":[
+		7543, 6312, 5432, 5110, 3213, 2313, 3332
+	]
+}
