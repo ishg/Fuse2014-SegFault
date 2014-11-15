@@ -8,7 +8,7 @@ var fs = require("fs");
 var path = require('path');
 var app = express();
 
-var user = 1;
+var user = 2;
 
 app.set('port', (process.env.PORT || 5000))
 app.use('/public',express.static(__dirname+'/public'));
@@ -42,7 +42,7 @@ var updateNotifications = function(){
 		json = JSON.parse(data);
 		if(json.monitor != 0){
 			point = json.summaryPoint;
-			meal = json.meal;
+			meal = json.summaryMeal;
 			if(meal == "post"){
 				if(point>180){
 					glucose.description = "Your blood glucose level is high!";
@@ -55,7 +55,7 @@ var updateNotifications = function(){
 					glucose.level = 1;
 				}
 			}else{
-				if(point>120){
+				if(point>=120){
 					glucose.description = "Your blood glucose level is high!";
 					glucose.level = 3
 				}else if (point < 75){
@@ -81,7 +81,7 @@ var updateNotifications = function(){
 		point = json.summaryPoint;
 		sys = parseInt(point.substring(0,3));
 		dys = parseInt(point.substring(4));
-		if (sys<120 && dys<80){
+		if (sys<=120 && dys<=80){
 			bp.description = "Your blood pressure is great!";
 			bp.level = 1
 		}else if ((sys>=140 && sys<159)||(dys>90 && dys<99)){
@@ -114,6 +114,7 @@ var updateNotifications = function(){
 		}
 		write.push(exercise);
 		file = __dirname + '/public/data/u'+user+'/notification.json';
+		console.log(write);
 		fs.writeFile(file, JSON.stringify(write,undefined,2), function (err) {
     		if (err) throw err;
     	});
