@@ -17,14 +17,105 @@ function showContent(element) {
 }
 
 $(function() {
+	$('#siteContainer').css('opacity','1');
+
+	var summaryBP, summaryExercise, summaryGlucose;
+	var notifications = [];
+
 	doBloodPressure();
 	doExercise();
 	doGlucose();
-	doNotifications();
+	setTimeout(function(){
+		setupNotifications();
+		doNotifications();
+	},500);
+	
+
+
+function setupNotifications() {
+	if(summaryGlucose != undefined){
+		var glucose = {};
+		var point = summaryGlucose;
+			if(point>180){
+				glucose.description = "Your blood glucose level is high!";
+				glucose.level = 3
+			}else if (point > 160){
+				glucose.description = "Your blood glucose level is OK";
+				glucose.level = 2;
+			}else{
+				glucose.description = "Your blood glucose level is great!"
+				glucose.level = 1;
+			}
+			notifications.push(glucose);
+		}
+
+		if(summaryBP != undefined) {
+		var sys = summaryBP.split('/')[0];
+		var dys = summaryBP.split('/')[1];
+		var bp = {};
+
+		if (sys<=120 && dys<=80){
+		bp.description = "Your blood pressure is great!";
+		bp.level = 1
+	}else if ((sys>=140 && sys<159)||(dys>90 && dys<99)){
+		bp.level = 2;
+		bp.description = "You are in Stage 1 Hypertension!";
+	}else if (sys > 160 || dys > 100){
+		bp.level = 3;
+		bp.description = "You are in Stage 2 Hypertension! Seek help!"
+	}
+	notifications.push(bp);	
+	}
+
+	if(summaryExercise != undefined) {
+		var exercise = {};
+	var point = summaryExercise;
+	if (point < 5000){
+		exercise.description = "You haven't walked enough today. Move around more!";
+		exercise.level = 3;
+	}else if (point > 7000){
+		exercise.description = "Great job on fitness today!";
+		exercise.level = 1;
+	}else{
+		exercise.description = "Your movement was average today.";
+		exercise.level = 2;
+	}
+	notifications.push(exercise);
+	}
+
+}
 
 function doNotifications() {
+	var notificationContainer = $('#notificationContainer');
+
+	for(i = 0; i < notifications.length; i++) {
+		var element = document.createElement('p');
+		$(element).text(notifications[i].description);
+
+		if(notifications[i].level == 1) {
+			$(element).addClass('alert alert-success');
+			$(element).css('background-color','rgba(4,180,95,0.8)');
+			//$(element).css('color','#3c763d');
+			$(element).css('color','#FFF');
+			$(element).css('font-size','20pt');
+		}
+		else if(notifications[i].level == 2) {
+			$(element).addClass('alert alert-warning');
+			$(element).css('background-color','rgba(245,209,93,0.8)');
+			$(element).css('color','#FFF');
+			$(element).css('font-size','20pt');
+		}
+		else if(notifications[i].level == 3) {
+			$(element).addClass('alert alert-danger');
+			$(element).css('background-color','rgba(247,129,129,0.8)');
+			$(element).css('color','#FFF');
+			$(element).css('font-size','20pt');
+		}
+
+		notificationContainer.append(element);
+	}
 	
-	$.get('/api/notifications',function(res){
+	/*$.get('/api/notifications',function(res){
 		//console.log(res);
 	})
 	.success(function(res) {
@@ -62,7 +153,7 @@ function doNotifications() {
 	})
 	.error(function(data){
 		//console.log(err);
-	});
+	});*/
 }
 
 function doBloodPressure() {
@@ -107,6 +198,7 @@ function doBloodPressure() {
 			var ctx = c[0].getContext("2d");
 			//var valueTop = c.data('valueTop');
 			//var valueBot = c.data('valueBot');
+			summaryBP = res.summaryPoint;
 			var valueTop = res.summaryPoint.split('/')[0];
 			var valueBot = res.summaryPoint.split('/')[1];
 
@@ -188,6 +280,7 @@ function doExercise() {
 			var c = $('#exerciseCanvas');
 			var ctx = c[0].getContext("2d");
 			//var value = c.data('value');
+			summaryExercise = res.summaryPoint;
 			var value = res.summaryPoint;
 
 			var i = 0;
@@ -342,6 +435,7 @@ function doGlucose() {
 			var c = $('#glucoseCanvas');
 			var ctx = c[0].getContext("2d");
 			//var value = c.data('value');
+			summaryGlucose = res.summaryPoint;
 			var value = res.summaryPoint;
 
 			var i = 0;
@@ -360,7 +454,43 @@ function doGlucose() {
 				ctx.fillText(value + " mg/dL",0,90);
 			}
 		} else {
-			$('#glucoseModule').css('display','none');
+			//$('#glucoseModule').css('display','none');
+			$('#glucoseModule').css('background-color','#BDBDBD');
+			$('#glucoseModule').empty();
+			var div = document.createElement('div');
+			$(div).css('position','relative');
+			$(div).css('width','0');
+			$(div).css('height','0');
+			var div2 = document.createElement('div');
+			$(div2).css('position','absolute');
+			$(div2).css('left','225px');
+			$(div2).css('top','23px');
+			var icon = document.createElement('i');
+			$(icon).addClass('fa fa-plus-circle');
+			$(icon).css('color','#848484');
+			$(icon).css('font-size','250pt');
+			$(div2).append(icon);
+			$(div).append(div2);
+			$('#glucoseModule').append(div);
+			var connectBtn = document.getElementById('glucoseModule');
+			connectBtn.addEventListener('click', function(e) {
+
+		var options = {
+		  publicToken: '876289965adce127a26cddfb2e76c371', // you should have this from the succesful authentication flow
+		  clientUserId: encodeURIComponent('ishg'), // can be email or any other unique identifier
+		  close: function() {
+		    // optional callback that will be called if the user closes the popup 
+		    // without connecting any data sources.
+		  },
+		  error: function(err) {
+		    // optional callback that will be called if an error occurs while 
+		    // loading the popup.
+		    
+		    // `err` is an object with the fields: `code`, `message`, `detailedMessage`
+		  } 
+		}
+		HumanConnect.open(options);
+	});
 		}
 	})
 	.error(function(data){

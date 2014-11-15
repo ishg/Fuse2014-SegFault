@@ -30,3 +30,10 @@ nav{
 .module.over {
   margin-top: 50px;
 }
+
+#siteContainer {
+	opacity: 0;
+   transition: opacity 1s ease-in-out;
+   -moz-transition: opacity 1s ease-in-out;
+   -webkit-transition: opacity 1s ease-in-out;
+}

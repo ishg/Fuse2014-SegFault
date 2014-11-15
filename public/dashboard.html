@@ -22,16 +22,13 @@
 		  	<div class="col-md-4"></div>
 		  	<div class="col-md-4" style="text-align:center"><h1 style="color:#fff">Health<span style="font-weight:bold;">Dash</h1></div>
 		  	<div class="col-md-4" style="line-height:5;">
-		  		<!--<script src='https://connect.humanapi.co/connect.js'></script>-->
+		  		<script src='https://connect.humanapi.co/connect.js'></script>
 				<button style="margin-left:100px;" id='connect-health-data-btn' type="button" class="btn btn-success">Connect Your Devices</button>
 		  	</div>
 		  </div><!-- /.container-fluid -->
 		  <div class="col-md-1"></div>
 		</nav>
-		<div class="container">
-
-		</div>
-		<div class="container col-md-12">
+		<div id="siteContainer" class="container col-md-12">
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10" style="margin-top: 25px; margin-bottom:25px;">
@@ -61,50 +58,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="module" id="glucoseModule" style="background-color: #DBA901">
-						<div style="position: relative; width: 0; height: 0">
-						    <div style="position: absolute; left: 370px; top: 40px">
-						        <i class="fa fa-tint" style="color: #F5D15D; font-size: 260pt"></i>
-						    </div>
-						</div>
-						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
-						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
-						  <li role="presentation"><a onClick="showContent(this)" data-show=".preGraph" style="color: #FFF">Pre-Meal Graph</a></li>
-						  <li role="presentation"><a onClick="showContent(this)" data-show=".postGraph" style="color: #FFF">Post-Meal Graph</a></li>
-						</ul>
-						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Blood Glucose</h1>
-						<div style="position: relative; top -50px">			
-							<div class="summary displayableContent">
-								<div class="col-md-8 col-md-offset-2">
-									<canvas class="col-md-12" id="glucoseCanvas" data-value="80"></canvas>
-								</div>
-							</div>
-							<div class="preGraph displayableContent" style="display: none">
-								<div class="col-md-10 col-md-offset-1">
-									<canvas class="col-md-12" height="225" width="600" id="preGlucoseChart"></canvas>
-									<div id="preLegend"></div>
-								</div>
-							</div>
-							<div class="postGraph displayableContent" style="display: none">
-								<div class="col-md-10 col-md-offset-1">
-									<canvas class="col-md-12" height="225" width="600" id="postGlucoseChart"></canvas>
-									<div id="postLegend"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 moduleContainer" id="rightColumn">
-					<div class="module" id="notificationModule" style="background-color: #0080FF">
-						<div style="position: relative; width: 0; height: 0">
-						    <div style="position: absolute; left: 300px; top: 23px">
-						        <i class="fa fa-envelope" style="color: #58ACFA; font-size: 250pt"></i>
-						    </div>
-						</div>
-						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: 15px; right: 25px">Notifications</h1>
-						<div style="margin-top: 10px" id="notificationContainer" class="col-md-10 col-md-offset-1">
-						</div>
-					</div>
 					<div class="module" id="bloodPressureModule" style="background-color: #d9534f">
 						<div style="position: relative; width: 0; height: 0">
 						    <div style="position: absolute; left: 300px; top: 23px">
@@ -125,6 +78,50 @@
 							<div class="history displayableContent" style="display: none">
 								<div class="col-md-10 col-md-offset-1" id="bloodContainer">
 									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 moduleContainer" id="rightColumn">
+					<div class="module" id="notificationModule" style="background-color: #0080FF">
+						<div style="position: relative; width: 0; height: 0">
+						    <div style="position: absolute; left: 300px; top: 23px">
+						        <i class="fa fa-envelope" style="color: #58ACFA; font-size: 250pt"></i>
+						    </div>
+						</div>
+						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: 15px; right: 25px">Notifications</h1>
+						<div style="margin-top: 10px" id="notificationContainer" class="col-md-10 col-md-offset-1">
+						</div>
+					</div>
+					<div class="module" id="glucoseModule" style="background-color: #DBA901">
+						<div style="position: relative; width: 0; height: 0">
+						    <div style="position: absolute; left: 370px; top: 40px">
+						        <i class="fa fa-tint" style="color: #F5D15D; font-size: 260pt"></i>
+						    </div>
+						</div>
+						<ul class="nav nav-tabs" style="position: relative; z-index: 1">
+						  <li role="presentation" class="active"><a onClick="showContent(this)" data-show=".summary" style="color: #6E6E6E">Summary</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".preGraph" style="color: #FFF">Pre-Meal Graph</a></li>
+						  <li role="presentation"><a onClick="showContent(this)" data-show=".postGraph" style="color: #FFF">Post-Meal Graph</a></li>
+						</ul>
+						<h1 style="color: #FFF; margin-left: 15px; text-align: right; position: relative; top: -55px; right: 25px">Blood Glucose</h1>
+						<div style="position: relative; top -50px">			
+							<div class="summary displayableContent">
+								<div class="col-md-8 col-md-offset-2">
+									<canvas class="col-md-12" id="glucoseCanvas" data-value="80"></canvas>
+								</div>
+							</div>
+							<div class="preGraph displayableContent" style="display: none">
+								<div class="col-md-10" style="margin-left: 15px">
+									<canvas class="col-md-12" height="225" width="600" id="preGlucoseChart"></canvas>
+									<div id="preLegend"></div>
+								</div>
+							</div>
+							<div class="postGraph displayableContent" style="display: none">
+								<div class="col-md-10" style="margin-left: 15px">
+									<canvas class="col-md-12" height="225" width="600" id="postGlucoseChart"></canvas>
+									<div id="postLegend"></div>
 								</div>
 							</div>
 						</div>

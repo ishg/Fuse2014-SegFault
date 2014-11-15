@@ -1,6 +1,6 @@
 {
 	"monitor":1,
-	"summaryPoint": 120,
+	"summaryPoint": 196,
 	"summaryMeal": "post",
 	"dates":[
 		"Nov 9","Nov 10", "Nov 11", "Nov 12", "Nov 13", "Nov 14", "Nov 15"
@@ -18,7 +18,7 @@
 		126,140,135,154,169,137,124
 	],
 	"lunchPost":[
-		156,134,165,151,140,172,120
+		156,134,165,151,140,172,196
 	],
 	"dinnerPost":[
 		124,169,143,139,127,153

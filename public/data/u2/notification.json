@@ -1,10 +1,10 @@
 [
   {
-    "description": "Your blood glucose level is great!",
-    "level": 1
+    "description": "Your blood glucose level is high!",
+    "level": 3
   },
   {
-    "description": "Great job on fitness today!",
-    "level": 1
+    "description": "Your movement was average today.",
+    "level": 2
   }
 ]

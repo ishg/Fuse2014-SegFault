@@ -1,9 +1,5 @@
 [
   {
-    "level": 2,
-    "description": "You are in Stage 1 Hypertension!"
-  },
-  {
     "description": "You haven't walked enough today. Move around more!",
     "level": 3
   }
