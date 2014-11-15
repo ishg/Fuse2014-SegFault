@@ -1,14 +1,10 @@
-{
-	"glucose":{
-		"description": "String of text",
-		"level": 1
-	},
-	"bp":{
-		"description": " String of text ",
-		"level": 2
-	},
-	"exercise":{
-		"description": " String of text ",
-		"level": 3
-	}
-}
+[
+  {
+    "level": 2,
+    "description": "You are in Stage 1 Hypertension!"
+  },
+  {
+    "description": "You haven't walked enough today. Move around more!",
+    "level": 3
+  }
+]

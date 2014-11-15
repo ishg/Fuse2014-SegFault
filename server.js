@@ -24,8 +24,102 @@ app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 app.get('/dash', function(req, res) {
+	updateNotifications();
 	res.sendFile(path.join(__dirname, '/public/dashboard.html'));	
 });
+
+var updateNotifications = function(){
+	var json, file, point,meal;
+	var write = [];
+	var glucose = {};
+	
+	file = __dirname + '/public/data/u'+user+'/glucose.json';
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+		json = JSON.parse(data);
+		if(json.monitor != 0){
+			point = json.summaryPoint;
+			meal = json.meal;
+			if(meal == "post"){
+				if(point>180){
+					glucose.description = "Your blood glucose level is high!";
+					glucose.level = 3
+				}else if (point > 160){
+					glucose.description = "Your blood glucose level is OK";
+					glucose.level = 2;
+				}else{
+					glucose.description = "Your blood glucose level is great!"
+					glucose.level = 1;
+				}
+			}else{
+				if(point>120){
+					glucose.description = "Your blood glucose level is high!";
+					glucose.level = 3
+				}else if (point < 75){
+					glucose.description = "Your blood glucose level is low!";
+					glucose.level = 2;
+				}else{
+					glucose.description = "Your blood glucose level is great!"
+					glucose.level = 1;
+				}
+			}
+			write.push(glucose);
+		}
+	});
+	var sys, dys;
+	var bp = {};
+	file = __dirname + '/public/data/u'+user+'/bp.json';
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+		json = JSON.parse(data);
+		point = json.summaryPoint;
+		sys = parseInt(point.substring(0,3));
+		dys = parseInt(point.substring(4));
+		if (sys<120 && dys<80){
+			bp.description = "Your blood pressure is great!";
+			bp.level = 1
+		}else if ((sys>=140 && sys<159)||(dys>90 && dys<99)){
+			bp.level = 2;
+			bp.description = "You are in Stage 1 Hypertension!";
+		}else if (sys > 160 || dys > 100){
+			bp.level = 3;
+			bp.description = "You are in Stage 2 Hypertension! Seek help!"
+		}
+		write.push(bp);
+	});
+	var exercise = {};
+	file = __dirname + '/public/data/u'+user+'/exercise.json';
+	fs.readFile(file, 'utf8', function (err, data) {
+		if (err) {
+			console.log('Error: ' + err);
+			return;
+		}
+		json = JSON.parse(data);
+		point = json.summaryPoint;
+		if (point < 5000){
+			exercise.description = "You haven't walked enough today. Move around more!";
+			exercise.level = 3;
+		}else if (point > 7000){
+			exercise.description = "Great job on fitness today!";
+			exercise.level = 1;
+		}else{
+			exercise.description = "Your movement was average today.";
+			exercise.level = 2;
+		}
+		write.push(exercise);
+		file = __dirname + '/public/data/u'+user+'/notification.json';
+		fs.writeFile(file, JSON.stringify(write,undefined,2), function (err) {
+    		if (err) throw err;
+    	});
+	});
+
+}
 
 
 var getGlucose = function(){

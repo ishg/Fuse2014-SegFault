@@ -1,6 +1,7 @@
 {
 	"monitor":1,
 	"summaryPoint": 120,
+	"summaryMeal": "post",
 	"dates":[
 		"Nov 9","Nov 10", "Nov 11", "Nov 12", "Nov 13", "Nov 14", "Nov 15"
 	],
