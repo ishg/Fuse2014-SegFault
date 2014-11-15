@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html ng-app="garden">
+	<head>
+		<title>My Garden</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/angular.js"></script>
+        <script src="js/angular-route.js"></script>
+        <script src="js/app.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="homepage">
+
+		<!-- Header -->
+			<div id="header-wrapper">
+				<div id="header">
+
+                <!-- Logo -->
+                	<img src="images/NWF.jpg" alt="" />
+                    <h1><a href="/">My Garden</a></h1>    
+                    
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul>
+                       		<li class="current"><a href="/">Home</a></li>
+ 			                <li><a href="/recommendations">Recommendations</a></li>
+ 			                <li><a href="/questions">FAQ</a></li>
+                            <li><a href="/success">Success Stories</a></li>
+                            <li><a href="/profile">My Profile</a></li>
+                            <li>Sign In</a></li>
+                            <li><strong><a>Certify Now</a></strong></li>
+                        </ul>
+                    </nav>
+
+                <!-- Banner -->
+                    <section id="banner">
+                        <header>
+                            <h2>National Wildlife Federation</h2>
+                            <p>Fostering native plant gardening for everybody</p>
+                        </header>
+                    </section>	
+                    
+				</div>
+			</div>
+
+		<!-- Main -->
+			<div id="main-wrapper" ng-controller="QuesCtrl">
+				<div class="container">
+					<div class="row">
+						<div class="12u">
+							
+                        <!-- Blog -->
+								<section>
+									<header class="major">
+										<h2>Recent Stories</h2>
+									</header>
+									<div class="row">
+										<div class="6u">
+											<section class="box">
+												<a href="#" class="image featured"><img src="images/gardengirl.jpg" alt="" /></a>
+												<header>
+													<h3>Gabriel's Local Community</h3>
+													<p>Posted 3 minutes ago</p>
+												</header>
+												<p>Today a total of 24 states host certified communities. Washington has the most with 15, followed by Florida, which has nine. Four counties also have joined the program: Arlington and Fairfax in Virginia, Broward in Florida and Sonoma in California. And there’s even one lake: North Carolina’s Lake Norman, where the eight communities surrounding the lake were certified in 2011...</p>
+												<footer>
+													<ul class="actions">
+														<li><a href="#" class="button icon fa-file-text">Continue Reading</a></li>
+														<li><a href="#" class="button alt icon fa-comment">7 comments</a></li>
+													</ul>
+												</footer>
+											</section>
+										</div>
+										<div class="6u">
+											<section class="box">
+												<a href="#" class="image featured"><img src="images/smallgarden.jpg" alt="" /></a>
+												<header>
+													<h3>A Tail of Two Gardens</h3>
+													<p>Posted 17 minutes ago</p>
+												</header>
+												<p>Guidry oversees her certified community as part of her job with Broward County. Malcolm Barnard, who was still a middle school student in 2010 when he decided his town of Johns Creek, Georgia, should become an NWF community habitat. Johns Creek is a suburb of Atlanta, and since 35 percent of its population is younger than 19, it was fitting that a teenager took charge...</p>
+												<footer>
+													<ul class="actions">
+														<li><a href="#" class="button icon fa-file-text">Continue Reading</a></li>
+														<li><a href="#" class="button alt icon fa-comment">29 comments</a></li>
+													</ul>
+												</footer>
+											</section>
+										</div>
+									</div>
+								</section>    
+                            
+                            
+                        <!-- Questions -->
+                            <header class="major">
+                                <h2>Questions</h2>
+                            </header>
+                            <section>
+                                <section class="box" ng-repeat="q in questions.data|limitTo:3">
+                                    <header>
+                                            <h2>{{q.title}}</h2>
+                                    </header>
+                                    <div class="row">
+                                        <div class="2u">
+                                            <div class="mini-counts">
+                                                <span>{{q.votes}} votes</span>
+                                            </div>
+                                            <div class="mini-counts">
+                                                <span >{{q.views}} views</span>
+                                            </div>
+                                        </div>
+                                        <div class="10u">
+                                            <p>{{q.body}}&nbsp;<a ng-click="getQuestion(q.id)" href="#">Find out more</a></p>
+                                        </div>    	
+                                    </div>
+                                </section>
+                            </section>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Footer -->
+			<div id="footer-wrapper">
+				<section id="footer" class="container">
+					
+						
+					<div class="row">
+						<div class="12u">
+						
+							<!-- Copyright -->
+								<div id="copyright">
+									<ul class="links">
+										<li>&copy; National Wildlife Federation. All rights reserved.</li>
+									</ul>
+								</div>
+
+						</div>
+					</div>
+				</section>
+			</div>
+			
+	</body>
+</html>
